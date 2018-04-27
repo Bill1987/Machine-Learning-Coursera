@@ -1,9 +1,9 @@
 ### 章节1绪论：	初识机器学习  
 	课时1	欢迎参加《机器学习》课程  
-	课时2	[什么是机器学习？](/notes/1-2.md)  
+课时2	[什么是机器学习？](/notes/1-2.md)  
 	课时3	[监督学习](./notes/1-2.md)  
 	课时4	[无监督学习](/machine-learning-note/notes/1-2.md) 
-	课时5	问题  
+	课时5	问题[我的简介](/notes/1-2.md)  
   
 ### 章节2	单变量线性回归  
 	课时6	[模型描述](/machine-learning-note/notes/2.6.png)  
