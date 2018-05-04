@@ -20,11 +20,12 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+h = sigmoid( X * theta);
 
+J = 1/m * sum((-y' * log(h)) - (1-y)'* log(1-h));       %正常算J的时候就要SUM？？？
 
-
-
-
+grad = 1/m * ( X' * (h - y) );                   %求导数的时候，就不要sum了？？？
+                                                %也许是因为sum在算向量的时候，没有意义，而且会把他们加成一个数，所以干脆不写sum了
 
 
 % =============================================================
