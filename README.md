@@ -11,4 +11,6 @@ http://study.163.com/course/courseMain.htm?courseId=1004570029
 note：[Learning Note](./machine-learning-note)  
 ex 1：[Linear Regression](./machine-learning-ex1)  
 ex 2：[Logistic Regression](./machine-learning-ex2)  
+ex 3: [Multi-class Classification and Neural Networks](./machine-learning-ex3)  
+
 
