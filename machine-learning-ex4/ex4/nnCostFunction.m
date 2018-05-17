@@ -62,25 +62,57 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%计算h
+a1 = [ones(m,1) , X];
 
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(m,1) , a2];
 
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
 
+h = a3;
 
+%将y向量化 10 * 5000
+y_vec = zeros( num_labels, m);
+%将y的值对应位置转成1
+for i = 1:m
+    y_vec( y(i),i ) = 1;
+end
 
+for i = 1:m
+    J = J + 1/m * sum( -log(h(i,:) * y_vec(:,i)) - log(1-(h(i,:))) * (1-y_vec(:,i)) );
+end
 
+%添加正则化
+Theta1_reg=Theta1(:,2:end);     %因为正则化参数是是从第二个参数算起的。
+Theta2_reg=Theta2(:,2:end);
 
+J = J + lambda/(2*m) * (sum(sum(Theta1_reg .^2)) +sum(sum(Theta2_reg .^2)));
 
+DeltaL1 = zeros(size(Theta1));
+DeltaL2 = zeros(size(Theta2));
 
+%偏导数
+for i = 1:m
+    delta3 = a3(i,:)' - y_vec(:,i);
+    
+    temp = Theta2'*delta3;
+    delta2 = temp(2:end,:) .* sigmoidGradient(z2(i,:))';        %去掉添加的a0 = 1
+    
+    DeltaL1 = DeltaL1 + delta2 * a1(i,:);
+    DeltaL2 = DeltaL2 + delta3 * a2(i,:);
+end
 
+%正则化神经网络
+Theta1_Temp = Theta1;
+Theta1_Temp(:,1) = 0;               %j=0项是没有，所以将Theta1(1)设置为0
+Theta1_grad = 1/m * (DeltaL1 + lambda * Theta1_Temp);
 
-
-
-
-
-
-
-
-% -------------------------------------------------------------
+Theta2_Temp = Theta2;
+Theta2_Temp(:,1) = 0;               %j=0项是没有，所以将Theta2(1)设置为0
+Theta2_grad = 1/m * (DeltaL2 + lambda * Theta2_Temp);
 
 % =========================================================================
 
